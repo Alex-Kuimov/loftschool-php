@@ -2,11 +2,12 @@
 function task1( $array, $param ) {
 	if ( $param === true ) {
 		return implode( ', ', $array );
-	} else {
-		foreach ( $array as $str ) {
-			echo '<p>' . $str . '</p>';
-		}
 	}
+
+	foreach ( $array as $str ) {
+		echo '<p>' . $str . '</p>';
+	}
+
 }
 
 function task2( $operation, ...$numbers ) {
@@ -18,8 +19,6 @@ function task2( $operation, ...$numbers ) {
 			$result += $number;
 		}
 
-		echo $result;
-
 	} elseif ( $operation == '-' ) {
 
 		$result = $numbers[0];
@@ -27,8 +26,6 @@ function task2( $operation, ...$numbers ) {
 		for ( $i = 1; $i <= sizeof( $numbers ); $i++ ) {
 			$result -= $numbers[ $i ];
 		}
-
-		echo $result;
 
 	} elseif ( $operation == '*' ) {
 
@@ -38,16 +35,17 @@ function task2( $operation, ...$numbers ) {
 			$result *= $number;
 		}
 
-		echo $result;
-
 	} elseif ( $operation == '/' ) {
 
 		$result = $numbers[0];
 
 		for ( $x = 1; $x <= sizeof( $numbers ); $x++ ) {
-			echo $result /= $numbers[ $x ];
+			$result /= $numbers[ $x ];
 		}
 	}
+
+	echo $result;
+
 }
 
 function task3( $num1, $num2 ) {
