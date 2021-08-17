@@ -2,7 +2,7 @@
 const TESTCONSTANTA = 'asd';
 $user_name = 'Igor';
 
-function show_something()
+function showSomething()
 {
     return 'SOMETHING';
 }
