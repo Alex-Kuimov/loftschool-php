@@ -8,14 +8,14 @@ if ( empty( $_POST ) ) {
 
 require 'inc/functions.php';
 
-$email    = htmlspecialchars( $_POST['email'] );
+$email    = htmlspecialchars( $_POST['email'] ?? '' );
 $street   = htmlspecialchars( $_POST['street'] );
 $house    = htmlspecialchars( $_POST['home'] );
 $building = htmlspecialchars( $_POST['part'] );
 $flat     = htmlspecialchars( $_POST['appt'] );
 $floor    = htmlspecialchars( $_POST['floor'] );
 
-$client_id = get_client_id( $email );
+$client_id = getClientId( $email );
 
 $args = [
 	'client_id' => $client_id,
@@ -26,7 +26,7 @@ $args = [
 	'floor'     => $floor,
 ];
 
-$order = create_order( $args );
+$order = createOrder( $args );
 
 if ( $order['result'] ) {
 	$order_id    = $order['id'];

@@ -1,7 +1,7 @@
 <?php
 require_once 'inc/connection.php';
 
-function create_order( $args ) {
+function createOrder( $args ) {
 	global $pdo;
 
 	$query = $pdo->prepare(
@@ -23,7 +23,7 @@ function create_order( $args ) {
 	);
 
 	$order_id     = $pdo->lastInsertId();
-	$orders_count = get_orders_count( $args['client_id'] );
+	$orders_count = getOrdersCount( $args['client_id'] );
 
 	return [
 		'result' => $result,
@@ -32,7 +32,7 @@ function create_order( $args ) {
 	];
 }
 
-function create_client( $email ) {
+function createClient( $email ) {
 	global $pdo;
 	$query  = $pdo->prepare( 'INSERT INTO clients (`email`) VALUES (:email)' );
 	$result = $query->execute( [ ':email' => $email ] );
@@ -46,19 +46,19 @@ function create_client( $email ) {
 	return false;
 }
 
-function get_client_id( $email ) {
-	$client = get_client_by_email( $email );
-	return $client ? $client['id'] : create_client( $email );
+function getClientId( $email ) {
+	$client = getClientByEmail( $email );
+	return $client ? $client['id'] : createClient( $email );
 }
 
-function get_client_by_email( $email ) {
+function getClientByEmail( $email ) {
 	global $pdo;
 	$result = $pdo->prepare( 'SELECT * FROM clients WHERE `email` = :email ' );
 	$result->execute( [ ':email' => $email ] );
 	return $result->fetch( PDO::FETCH_ASSOC );
 }
 
-function get_orders_count( $client_id ) {
+function getOrdersCount( $client_id ) {
 	global $pdo;
 	$query = $pdo->prepare( 'SELECT * FROM orders WHERE `client_id` = :clientId ' );
 	$query->execute( [ ':clientId' => $client_id ] );
