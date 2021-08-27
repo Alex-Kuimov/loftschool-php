@@ -9,7 +9,7 @@ class StudentTariff extends Tariffs {
 	protected $price_for_distance = 4;
 
 	protected function check_age( int $age ) {
-		if ( $age < 18 || $age > 25 ) {
+		if ( $age < self::MIN_AGE || $age > self::MAX_AGE ) {
 			echo 'Недопустимый возраст для студента! Ваш возраст: ' . $age . '<br>';
 			return false;
 		} else {

@@ -12,9 +12,9 @@ class DailyTariff extends Tariffs {
 		if ( ! $this->check_age( $age ) ) {
 			return false;
 		} else {
-			$days   = $time / 1440;
-			$modulo = $time % 1440;
-			if ( $modulo > 30 ) {
+			$days   = $time / self::MINUTES;
+			$modulo = $time % self::MINUTES;
+			if ( $modulo > self::MAX_DAYS ) {
 				$days++;
 			}
 
